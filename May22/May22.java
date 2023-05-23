@@ -18,7 +18,12 @@ class Assignment {
 public class May22 {
     public static void main(String[] args) {
         Assignment obj = new Assignment();
+        Assignment obj2 = new Assignment();
         obj.sum();
         obj.display();
+        obj2.sum();
+        obj2.display();
+        System.out.println(new Assignment().a);
+        System.out.println(new Assignment().b);
     }
 }
