@@ -1,10 +1,9 @@
-
 package mypack;
+import java.util.Scanner;
 class Employee {
 
 	int empno;
-	String ename;
-
+	String ename = "Odelu";
 	Salary sal;
 	
 	public Employee() {
@@ -12,68 +11,57 @@ class Employee {
 	  sal = new Salary();
 	}
 	
-	public Employee(int x, String ename) {
+	public Employee(int x) {
+		  this("Mani");
 		  this.empno=x;
-		  this.ename=ename;
-		  System.out.println("From Employee Constructor");
+		  System.out.println("From Employee Constructor" + x);
 		  sal = new Salary();
 	}
-
-	public void getDetails() {
-		System.out.println(empno + " -- " + ename + " --- " + sal);
-	}
 	
-	 public void CalSalary(double basic) {
-	        sal.setBasic(basic);
-	        sal.setDa(0.5 * basic); 
-	        sal.setPf(0.3 * basic); 
-	        sal.setGross(basic + sal.getDa() - sal.getPf());
-	        sal.setNet(sal.getGross());
-	    }
+	public Employee(String str) {
+		  
+		  System.out.println("From Employee Constructor" + str);
+	}
+	public String getDetails() {
+		return (empno + " -- " + ename + " --- " + sal);
+	}
 
 }
 
 class Manager extends Employee {
-	String dept;
-	String name;
-	int id;
-	
-	public Manager() {}
+	String dept = "IT";
 	
 
-	public Manager(int id,String name,String dept) {
-		super(); 
-		this.dept=dept;
-		this.name=name;
-		this.id=id;
-		 // used to invoke base clas constructor
+	public Manager() {
+		super(888);  // used to invoke base clas constructor
 		System.out.println("From Mgr Constr");
+		
 	}
-
-
-
-	public void getDetails() {
-		System.out.println(id + " -- " + name + "--  " + dept);
+	public String getDetails() {
+		 return super.getDetails()+ "--  " + dept;
 	}
-	
-	
+	public void CalSalary(double basic) {
+		sal.setBasic(basic);
+		sal.setDa(0.5 * sal.getBasic());
+		sal.setPf(0.3 * sal.getBasic());
+		sal.setGross(sal.getBasic() + sal.getDa() - sal.getPf());
+		sal.setNet(sal.getGross());
+	}
 
 }
 
 public class MainClass {
-	
 
 	public static void main(String[] args) {
-		Employee emp = new Employee(444,"Odelu");
-		
-	     emp.CalSalary(40000); 
-		 emp.getDetails();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter basic salary of manager");
+		int basicSalary=sc.nextInt();
+		Employee emp = new Employee();
+		System.out.println(emp.getDetails());
+		Manager mgr = new Manager();
+		mgr.CalSalary(basicSalary);
+		System.out.println(mgr.getDetails());
 
-		Manager mgr = new Manager(555,"Jhansi","Backend");
-		
-		mgr.getDetails();
-
-	
 	}
 
 }

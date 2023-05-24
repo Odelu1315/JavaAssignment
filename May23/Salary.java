@@ -1,6 +1,4 @@
 package mypack;
-import java.util.Scanner;
-
 public class Salary {
 
 	private double basic;
@@ -8,16 +6,12 @@ public class Salary {
 	private double pf;
 	private double gross;
 	private double net;
-	
 
 	public double getBasic() {
 		return basic;
 	}
 
 	public void setBasic(double basic) {
-		 Scanner sc = new Scanner(System.in);
-	     System.out.println("Enter basic salary:");
-	     basic = sc.nextInt();
 		this.basic = basic;
 	}
 
@@ -57,5 +51,4 @@ public class Salary {
 	public String toString() {
 		return "Salary [basic=" + basic + ", da=" + da + ", pf=" + pf + "]";
 	}
-
 }
