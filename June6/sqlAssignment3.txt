@@ -1,0 +1,19 @@
+select empno,ename,mgr,deptno from emp where (mgr,deptno) in
+(select mgr,deptno from emp where empno in(7566,7788));
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) <ANY
+(select mgr,deptno from emp where empno in(7566,7788));
+--- ANY is illegal to use in multiple coliumn subquery
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) >ANY
+(select mgr,deptno from emp where empno in(7566,7788));
+--- ANY is illegal to use in multiple coliumn subquery
+
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) >ALL
+(select mgr,deptno from emp where empno in(7566,7788));
+--- ALL is illegal to use in multiple coliumn subquery
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) <ALL
+(select mgr,deptno from emp where empno in(7566,7788));
+--- ALL is illegal to use in multiple coliumn subquery
