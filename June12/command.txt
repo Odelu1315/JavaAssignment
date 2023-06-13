@@ -1,0 +1,2 @@
+java -cp C:\Odelu\emsjar.jar;C:\Odelu\ojdbc8-12.2.0.1.jar -Xmx50m -Xms50m -Xmn20m -XX:+UseParallelGC com.dedalus.view.MainClass
+

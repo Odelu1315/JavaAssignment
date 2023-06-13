@@ -59,3 +59,29 @@ select ename, trunc(months_between(sysdate,hiredate)/12,1) as exp from emp where
 select ename ,  hiredate from emp where hiredate> DATE '1981-06-30' and hiredate< DATE '1982-01-01'; --49
 select ename , job, deptno from emp where job='CLERK' and deptno=10; --50
 select ename, sal, hiredate from emp where sal>3000 and hiredate < DATE '1985-01-01'; --51
+
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) in
+(select mgr,deptno from emp where empno in(7566,7788));
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) <ANY
+(select mgr,deptno from emp where empno in(7566,7788));
+--- ANY is illegal to use in multiple coliumn subquery
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) <ANY
+(select mgr,deptno from emp where empno in(7566,7788));
+--- ANY is illegal to use in multiple coliumn subquery
+
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) >ANY
+(select mgr,deptno from emp where empno in(7566,7788));
+--- ANY is illegal to use in multiple coliumn subquery
+
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) >ALL
+(select mgr,deptno from emp where empno in(7566,7788));
+--- ALL is illegal to use in multiple coliumn subquery
+
+select empno,ename,mgr,deptno from emp where (mgr,deptno) <ALL
+(select mgr,deptno from emp where empno in(7566,7788));
+--- ALL is illegal to use in multiple coliumn subquery
